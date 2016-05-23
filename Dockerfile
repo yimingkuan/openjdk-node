@@ -28,6 +28,9 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # update and accept licences
 RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /usr/local/android-sdk-linux/tools/android update sdk --no-ui -a --filter platform-tool,build-tools-22.0.1,android-22
 
+EXPOSE 5037
+CMD adb -a -P 5037 fork-server server
+
 ENV GRADLE_USER_HOME /src/gradle
 VOLUME /src
 WORKDIR /src
