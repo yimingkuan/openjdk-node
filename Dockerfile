@@ -1,8 +1,10 @@
 FROM ubuntu:14.04
 
-RUN apt-get update && \
-  apt-get upgrade && \
-  apt-get install -y software-properties-common curl git htop man wget make python g++ lib32stdc++6 lib32z1
+RUN apt-get update
+
+RUN apt-get upgrade
+
+RUN apt-get install -y software-properties-common curl git htop man wget make python g++ lib32stdc++6 lib32z1
 
 RUN curl https://nodejs.org/dist/v6.2.0/node-v6.2.0-linux-x64.tar.gz | tar xz -C /usr/local/ --strip=1
 
@@ -29,6 +31,7 @@ ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /usr/local/android-sdk-linux/tools/android update sdk --no-ui -a --filter platform-tool,build-tools-22.0.1,android-22
 
 EXPOSE 5037
+
 CMD adb -a -P 5037 fork-server server
 
 ENV GRADLE_USER_HOME /src/gradle
