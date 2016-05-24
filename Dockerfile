@@ -1,10 +1,8 @@
 FROM ubuntu:14.04
 
-RUN apt-get update
-
-RUN apt-get upgrade
-
-RUN apt-get install -y software-properties-common curl git htop man wget make python g++ lib32stdc++6 lib32z1
+RUN apt-get update -y && \
+  apt-get upgrade && \ 
+  apt-get install -y software-properties-common curl git htop man wget make python g++ lib32stdc++6 lib32z1
 
 RUN curl https://nodejs.org/dist/v6.2.0/node-v6.2.0-linux-x64.tar.gz | tar xz -C /usr/local/ --strip=1
 
